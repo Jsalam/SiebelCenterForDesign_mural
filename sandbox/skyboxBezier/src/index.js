@@ -2,7 +2,7 @@
 
 let renderer, scene, camera, controls;
 
-init()
+init();
 
 function init() {
     // Renderer
@@ -26,8 +26,8 @@ function init() {
     controls.autorotate = true;
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 1;
-    controls.minDistance = 10;
-    controls.maxDistance = 200;
+    // controls.minDistance = 10;
+    // controls.maxDistance = 200;
     controls.update();
 
     let skyBox = new SkyBox(1344, 216, 288);
@@ -43,7 +43,7 @@ function init() {
     for (let i = 0; i < 60; i++) {
         let tmp = new Node();
         let posX = (Math.random() * 1344) - (1044 / 2);
-        let posY = -50; //(Math.random() * 30) - (130 / 2);
+        let posY = (Math.random() * 30) - (130 / 2);
         tmp.obj.position.set(posX, posY, -144)
         nodes.push(tmp);
         tmp.addToScene(scene);
