@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skybox in Three.js</title>
+
+    <!-- JS libraries -->
+    <script src="../libraries/three/three.js"></script>
+    <script src="../libraries/three/OrbitControls.js"></script>
+    <script src="../libraries/three/GLTFLoader.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/cssFlexbox.css">
+
+</head>
+
+<body>
+
+    <div id="consoleOutput" style=" z-index: 9999;position:absolute; color: red; padding-left: 10px;"></div>
+    <div id="devicePositionOutput" style=" z-index: 9999;position:absolute; color: greenyellow; width: 100%; margin-left: 300px;"></div>
+    <div id="skyBox"></div>
+
+
+    <!-- JS Code -->
+    <script src="src/node.js"></script>
+    <script src="src/edge.js"></script>
+    <script src="src/skyBox.js"></script>
+    <script src="src/deviceOrientation.js"></script>
+    <script src="src/devicePosition.js"></script>
+    <script src="src/GUI.js"></script>
+    <script src="src/gCamera.js"></script>
+    <script src="src/index.js"></script>
+</body>
+
+</html>
