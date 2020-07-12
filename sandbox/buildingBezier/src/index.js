@@ -16,7 +16,7 @@ function init() {
     scene = new THREE.Scene();
 
     // Camera
-    camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 50000);
+    camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 500000);
 
     // Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -50,7 +50,7 @@ function init() {
 
     //MODEL
     var loader = new THREE.GLTFLoader();
-    loader.load('models/test.glb', function(gltf) {
+    loader.load('models/building.glb', function(gltf) {
         scaleModel(gltf, 12)
         switchToWhite(gltf);
 
