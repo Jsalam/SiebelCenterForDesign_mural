@@ -51,11 +51,13 @@ function init() {
     //MODEL
     var loader = new THREE.GLTFLoader();
     loader.load('models/building.glb', function(gltf) {
+        
+        // add model to scene
+        scene.add(gltf.scene);
+        
         scaleModel(gltf, 12)
         switchToWhite(gltf);
 
-        // add model to scene
-        scene.add(gltf.scene);
 
     }, undefined, function(error) {
         console.error(error);
