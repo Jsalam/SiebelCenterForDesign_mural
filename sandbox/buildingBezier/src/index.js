@@ -43,6 +43,9 @@ function init() {
 
     var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
     backLight.position.set(100, 0, -100).normalize();
+    
+    var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light );
 
     scene.add(keyLight);
     scene.add(fillLight);
@@ -50,7 +53,7 @@ function init() {
 
     //MODEL
     var loader = new THREE.GLTFLoader();
-    loader.load('models/building.glb', function(gltf) {
+    loader.load('models/build.glb', function(gltf) {
         
         // add model to scene
         scene.add(gltf.scene);
