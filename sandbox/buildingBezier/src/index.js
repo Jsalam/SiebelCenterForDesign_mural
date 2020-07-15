@@ -44,16 +44,16 @@ function init() {
     var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
     backLight.position.set(100, 0, -100).normalize();
     
-    var light = new THREE.AmbientLight( 0x404040 ); // soft white light
-scene.add( light );
+    var ambientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
+
 
     scene.add(keyLight);
     scene.add(fillLight);
     scene.add(backLight);
-
+    scene.add(ambientLight);
     //MODEL
     var loader = new THREE.GLTFLoader();
-    loader.load('models/build.glb', function(gltf) {
+    loader.load('models/buildscaled.glb', function(gltf) {
         
         // add model to scene
         scene.add(gltf.scene);
