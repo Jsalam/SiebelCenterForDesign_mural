@@ -8,11 +8,11 @@ class Node {
         if (_geometry) {
             this.geometry = _geometry;
         }
-        this.material = new THREE.MeshBasicMaterial();
+        this.material = new THREE.MeshStandardMaterial();
         if (_material) {
             this.material = _material;
         }
-        this.material.wireframe = true;
+        //this.material.wireframe = true;
 
         // instance
         this.obj = new THREE.Mesh(this.geometry, this.material);

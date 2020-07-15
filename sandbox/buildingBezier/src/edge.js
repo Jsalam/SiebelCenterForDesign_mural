@@ -23,10 +23,10 @@ class Edge {
         this.points = this.curve.getPoints(40);
         this.geometry = new THREE.BufferGeometry().setFromPoints(this.points);
         let materials = [
-            new THREE.LineBasicMaterial({ color: 0xff0088 }),
-            new THREE.LineBasicMaterial({ color: 0x00ff88 }),
-            new THREE.LineBasicMaterial({ color: 0x88ff00 }),
-            new THREE.LineBasicMaterial({ color: 0x000085 })
+            new THREE.LineBasicMaterial({ color: 0xff008850 }),
+            new THREE.LineBasicMaterial({ color: 0x00ff8850 }),
+            new THREE.LineBasicMaterial({ color: 0x88ff0050 }),
+            new THREE.LineBasicMaterial({ color: 0x00008550 })
         ];
         this.material = materials[0];
 

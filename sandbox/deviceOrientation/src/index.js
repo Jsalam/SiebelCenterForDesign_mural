@@ -13,10 +13,10 @@ function initDevice() {
     GUI.print("is mobile: " + isMobile);
     device = new DevicePos();
     device.setup();
-    GUI.printPos("Initial oriantation Offset: " + initialOffset);
-    GUI.printPos("GPS status: " + device.status);
-    GUI.printPos("Lat: " + device.pos.lat + ", Lon :  " + device.pos.lon);
-    GUI.printPos("Heading: " + device.heading);
+    GUI.print("Initial oriantation Offset: " + initialOffset);
+    GUI.print("GPS status: " + device.status);
+    GUI.print("Lat: " + device.pos.lat + ", Lon :  " + device.pos.lon);
+    GUI.print("Heading: " + device.heading);
 }
 
 function initTHREE() {
@@ -84,7 +84,7 @@ function initTHREE() {
     scene.add(axesHelper)
 
     let nodes = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 30; i++) {
         let tmp = new Node();
         let posX = (Math.random() * 720);
         let posY = (Math.random() * 24);
@@ -107,7 +107,7 @@ function initTHREE() {
 
     let edges = [];
 
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 100; i++) {
         let sourceIndex = Math.floor(Math.random() * nodes.length);
         let targetIndex = Math.floor(Math.random() * nodes.length);
         if (sourceIndex == targetIndex) {

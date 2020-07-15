@@ -28,9 +28,9 @@ class DevicePos {
         this.geo_options = {
             enableHighAccuracy: true,
             //milliseconds of a possible cached position that is acceptable to return
-            maximumAge: 3000,
+            maximumAge: 300,
             //the maximum length of time (in milliseconds) the device is allowed to take in order to return a position
-            timeout: 7000
+            timeout: 5000
         };
     }
 

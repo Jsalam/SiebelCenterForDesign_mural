@@ -18,17 +18,22 @@ function init() {
     // Camera
     camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 500000);
 
+    // var helper = new THREE.CameraHelper(camera);
+    // scene.add(helper);
+
     // Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    camera.position.set(0, 0, 2000);
-    camera.lookAt(-720, 0, 0);
+    camera.position.set(-720, 60, 0);
+
+
 
     controls.autorotate = true;
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 1;
     // controls.minDistance = 10;
-    // controls.maxDistance = 200;
+    // controls.maxDistance = 400;
+    controls.target = new THREE.Vector3(-720, 60, -100);
     controls.update();
 
     // let skyBox = new SkyBox(1344, 216, 288);
@@ -36,29 +41,29 @@ function init() {
 
     // LIGHTING
     var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
-    keyLight.position.set(-100, 0, 100);
+    keyLight.position.set(-700, 60, 0);
 
     var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
     fillLight.position.set(100, 0, 100);
 
     var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
     backLight.position.set(100, 0, -100).normalize();
-    
-    var ambientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
+
+    var ambientLight = new THREE.AmbientLight(0x404040); // soft white light
 
 
     scene.add(keyLight);
-    scene.add(fillLight);
-    scene.add(backLight);
+    // scene.add(fillLight);
+    // scene.add(backLight);
     scene.add(ambientLight);
     //MODEL
     var loader = new THREE.GLTFLoader();
     loader.load('models/buildscaled.glb', function(gltf) {
-        
+
         // add model to scene
         scene.add(gltf.scene);
-        
-        scaleModel(gltf, 12)
+
+        //scaleModel(gltf, 12)
         switchToWhite(gltf);
 
 
@@ -73,7 +78,7 @@ function init() {
     scene.add(axesHelper)
 
     let nodes = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 30; i++) {
         let tmp = new Node();
         let posX = (Math.random() * 720);
         let posY = (Math.random() * 24);
@@ -96,7 +101,7 @@ function init() {
 
     let edges = [];
 
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 100; i++) {
         let sourceIndex = Math.floor(Math.random() * nodes.length);
         let targetIndex = Math.floor(Math.random() * nodes.length);
         if (sourceIndex == targetIndex) {
@@ -118,8 +123,7 @@ function animate() {
 }
 
 function switchToWhite(model) {
-    let objects = model.scene.children[2].children
-
+    let objects = model.scene.children[0].children
     for (const object of objects) {
         object.material.color = new THREE.Color(1, 1, 1);
     }
