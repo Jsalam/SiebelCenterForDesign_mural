@@ -1,129 +1,189 @@
-let img, section;
-
-let canvasWidth, canvasHeight;
-
-let wStep, hStep, nWidth, nHeight;
-
-let avgColors = [];
+let img;
+let colorTiles;
+let filterBySaturationTop, filterBySaturationBottom, inputHue, inputSaturation, inputLightness, BW, hairsBTN, savePNG;
+let nTiles;
+let offsetX, offsetY;
+let hairs, monochromatic;
+let randoms = [];
 
 function preload() {
-  img = loadImage("ptoMadero.jpg");
+    img = loadImage("images/antena.jpg");
 }
 
 function setup() {
-  createCanvas(img.width, img.height);
-  ellipseMode(CORNER)
-  // noStroke()
-  console.log("w: " + img.width + ", h:" + img.height);
+    let canvas = createCanvas(img.width * 2, img.height * 2);
+    canvas.position(300, 0)
+    ellipseMode(CORNER);
+    // set pixel density to low density displays
+    pixelDensity(1);
+    createP("Filter Top 50%")
+    filterBySaturationTop = createSlider(50, 100, 100);
+    createP("Filter Bottom 50%")
+    filterBySaturationBottom = createSlider(0, 50, 0);
+    createP("Tickness")
+    inputHue = createSlider(5, 30, 5);
+    createP("Length")
+    inputSaturation = createSlider(0, 500, 30);
+    createP("Orientation")
+    inputLightness = createSlider(0, TWO_PI, TWO_PI);
+    monochromatic = false;
+    hairs = true;
+    createP("Switch to greyscale")
+    BW = createButton("B&W");
+    BW.mousePressed(function() { monochromatic = !monochromatic });
 
-  // set pixel density to low density displays
-  pixelDensity(1);
+    createP("Hide hairs")
+    hairsBTN = createButton("Hairs");
+    hairsBTN.mousePressed(function() { hairs = !hairs });
 
-  // dimensions adjustment for high density displays
-  nWidth = 30;
-  nHeight = 21;
-  wStep = img.width / nWidth;
-  hStep = img.height / nHeight;
-  // let areaW = 25 * pixelDensity();
-  // let areaH = 25 * pixelDensity();
-  canvasWidth = width * pixelDensity();
-  canvasHeight = height * pixelDensity();
+    createP("Save target")
+    savePNG = createButton("Save PNG");
+    savePNG.mousePressed(saveTarget);
 
-  // console.log("imgW: " + img.width + ", imgH:" + img.height);
-  // console.log("canvasW: " + canvasWidth + ", canvasH:" + canvasHeight);
-  // console.log("wStep: " + wStep + ", hStep:" + hStep);
+    // process image
+    nTiles = 30;
+    let tiles = getTiles(img, nTiles);
+    colorTiles = getColorTiles(tiles);
 
-  // create image container
-  for (let i = 0; i < img.width; i += wStep) {
-    let tmpRow = [];
-    for (let j = 0; j < img.height; j += hStep) {
-      section = getSection(img, 0, i, wStep, hStep);
-      tmpRow.push(averageColors(section));
-    }
-    avgColors.push(tmpRow);
-  }
-  
-  //console.log(avgColors)
+    // 
+    offsetX = 200;
+    offsetY = 200;
+
+    createRandoms();
+
 }
+
+function saveTarget() {
+    saveCanvas('target', 'png');
+}
+
+function createRandoms() {
+    for (let i = 0; i < colorTiles.length; i++) {
+        randoms.push(random(0.5, 3));
+    }
+}
+
 
 function draw() {
-  background(200);
-  //image(img, 0, 0);
-  for (let i = 0; i < avgColors[0].length; i++) {
-    for (let j = 0; j < avgColors.length; j++) {
-      // fill(avgColors[j][i]._rgb[0], avgColors[j][i]._rgb[1], avgColors[j][i]._rgb[2])
-      ellipse(j * hStep, i * wStep, wStep, hStep);
-      console.log(i+" "+j);
-    }
-  }
-  //console.log(avgColors[0].length)
-  //fill(avgColors[0][0]._rgb[0], avgColors[0][0]._rgb[1], avgColors[0][0]._rgb[2])
-  //ellipse(100, 300, wStep, hStep);
-
-  // image(section, 0, 0);
-
-  // let section2 = getSection(img, mouseX, mouseY, wStep, hStep);
-  // let clr = averageColors(section2);
-  // fill(clr._rgb[0], clr._rgb[1], clr._rgb[2]);
-  // ellipse(mouseX, mouseY, wStep, hStep);
-  // image(section2, mouseX, mouseY);
-
+    background(255);
+    // image(img, 0, 0);
+    noFill();
+    //drawImageArray(img, tiles, nTiles);
+    drawColorArray(img, colorTiles, nTiles);
+    //noLoop();
 }
 
-function averageColors(src) {
-  let colors = [];
-  src.loadPixels();
-  // columns 
-  for (let column = 0; column < src.width; column++) {
-    // rows
-    for (let row = 0; row < src.height; row++) {
-      // get pixel position in original image
-      let position = (column + (src.width * row)) * 4;
-      colors.push([
-        src.pixels[position + 0],
-        src.pixels[position + 1],
-        src.pixels[position + 2]
-      ])
+function drawImageArray(img2, tiles, nTiles) {
+    let tileWidth = img2.width / nTiles;
+    let tileHeight = img2.height / nTiles;
+    for (let y = 0; y < nTiles; y++) {
+        for (let x = 0; x < nTiles; x++) {
+            let index = x + (y * nTiles);
+            //if (index % 2 == 0) {
+            image(tiles[index], x * tileWidth, y * tileHeight);
+            rect(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+            //}
+        }
     }
-  }
-
-  src.updatePixels();
-  let rtn = chroma.average(colors);
-  return rtn;
 }
 
-function getSection(src, x, y, w, h) {
 
-  let imgSection = createImage(int(w), int(h));
-
-  src.loadPixels();
-  imgSection.loadPixels();
-
-  // columns 
-  for (let column = x; column < x + imgSection.width; column++) {
-
-    // rows
-    for (let row = y; row < y + imgSection.height; row++) {
-
-      // get pixel position in original image
-      let position = (column + (src.width * row)) * 4;
-
-      // get pixel position in target image
-      let positionSection = (column - x + (imgSection.width * (row - y))) * 4;
-
-      // set the color pixel from the source image to the target image
-      imgSection.pixels[positionSection + 0] = src.pixels[position + 0]; // red
-      imgSection.pixels[positionSection + 1] = src.pixels[position + 1]; // green
-      imgSection.pixels[positionSection + 2] = src.pixels[position + 2]; // blue
-      imgSection.pixels[positionSection + 3] = src.pixels[position + 3]; // alpha
-
+function drawColorArray(img2, colors, nTiles) {
+    let tileWidth = img2.width / nTiles;
+    let tileHeight = img2.height / nTiles;
+    for (let y = 0; y < nTiles; y++) {
+        for (let x = 0; x < nTiles; x++) {
+            let index = x + (y * nTiles);
+            //noStroke();
+            //fill(colors[index]);
+            //ellipse(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+            drawStroke(colors[index], offsetX + (x * tileWidth), offsetY + (y * tileHeight), randoms[index]);
+        }
     }
-  }
+}
 
-  // update the pixels array
-  src.updatePixels()
 
-  imgSection.updatePixels()
+function drawStroke(_color, x, y, randomVal) {
 
-  return imgSection;
+    // Thickness
+    let t = map(_color._getHue(), 0, 360, 30, inputHue.value())
+    strokeWeight(t * randomVal);
+    strokeCap(SQUARE);
+
+    // Color
+    let theFill = _color;
+    if (monochromatic) {
+        theFill = map(_color._getLightness(), 0, 100, 0, 255);
+    }
+    stroke(theFill);
+
+
+    // Length
+    let l = map(_color._getSaturation(), 0, 100, 10, inputSaturation.value());
+
+    // Direction
+    let angle = map(_color._getLightness(), 0, 100, 0, inputLightness.value());
+    let dx = Math.cos(angle) * l;
+    let dy = Math.sin(angle) * l;
+
+    // draw line
+    if (filterBySaturationBottom.value() < _color._getSaturation() && _color._getSaturation() < filterBySaturationTop.value()) {
+        line(x, y, x + dx, y + dy);
+        if (hairs) {
+            if (monochromatic) {
+                stroke(theFill, 70)
+            } else {
+                stroke(_color._getRed(), _color._getGreen(), _color._getBlue(), 70)
+            }
+            strokeWeight(4);
+            line(x, y, x + dx * 10, y + dy * 10);
+        }
+    }
+}
+
+function getTiles(img2, nTiles) {
+    let tmp = [];
+    let tileWidth = img2.width / nTiles;
+    let tileHeight = img2.height / nTiles;
+    // select the image region
+    // row
+    for (let y = 0; y < nTiles; y++) {
+        // columns
+        for (let x = 0; x < nTiles; x++) {
+            let region = img2.get(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+            tmp.push(region);
+        }
+    }
+    return tmp;
+}
+
+function getColorTiles(tiles) {
+    let rtn = [];
+    for (const tile of tiles) {
+        rtn.push(averageImageColors(tile));
+    }
+    return rtn;
+}
+
+
+function averageImageColors(section) {
+    let colors = [];
+    section.loadPixels();
+    // columns 
+    for (let column = 0; column < section.width; column++) {
+        // rows
+        for (let row = 0; row < section.height; row++) {
+            // get pixel position in original image
+            let position = (column + (section.width * row)) * 4;
+            colors.push([
+                section.pixels[position + 0],
+                section.pixels[position + 1],
+                section.pixels[position + 2]
+            ]);
+        }
+    }
+    section.updatePixels();
+    let rtn = chroma.average(colors, 'rgb');
+    rtn = color(rtn._rgb[0], rtn._rgb[1], rtn._rgb[2])
+    return rtn;
 }
