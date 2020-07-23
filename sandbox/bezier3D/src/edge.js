@@ -19,11 +19,14 @@ class Edge {
             this.target.obj.position
         );
         this.points = this.curve.getPoints(25);
+        // Geometry
         this.geometry = new THREE.BufferGeometry().setFromPoints(this.points);
-        this.material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+        // Material
+        this.material = new THREE.LineBasicMaterial({ color: 0xff0000, linewidth: 4 });
         if (_material) {
             this.material = _material;
         }
+        // Object
         this.obj = new THREE.Line(this.geometry, this.material);
     }
 

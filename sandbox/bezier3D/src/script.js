@@ -8,6 +8,8 @@ init();
 function init() {
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x000000, 0.0);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById("bezier").appendChild(renderer.domElement);
 
