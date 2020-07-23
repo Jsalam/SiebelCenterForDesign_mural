@@ -156,6 +156,20 @@ function init() {
     }, undefined, function(error) {
         console.error(error);
     });
+    
+                var loader = new THREE.GLTFLoader();
+    loader.load('models/extrusion.glb', function(gltf) {
+
+        // add model to scene
+        scene.add(gltf.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGris(gltf);
+
+
+    }, undefined, function(error) {
+        console.error(error);
+    });
     //  **** NETWORK *****
 
     // Axes
