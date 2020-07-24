@@ -7,7 +7,7 @@ let hairs, monochromatic;
 let randoms = [];
 
 function preload() {
-    img = loadImage("images/antena.jpg");
+    img = loadImage("images/gravitationalNCSA.jpg");
 }
 
 function setup() {
@@ -71,6 +71,7 @@ function draw() {
     //drawImageArray(img, tiles, nTiles);
     drawColorArray(img, colorTiles, nTiles);
     //noLoop();
+    image(img, 0, 0, img.width / 10, img.height / 10);
 }
 
 function drawImageArray(img2, tiles, nTiles) {
@@ -108,7 +109,7 @@ function drawStroke(_color, x, y, randomVal) {
     // Thickness
     let t = map(_color._getHue(), 0, 360, 30, inputHue.value())
     strokeWeight(t * randomVal);
-    strokeCap(SQUARE);
+    strokeCap(ROUND);
 
     // Color
     let theFill = _color;
