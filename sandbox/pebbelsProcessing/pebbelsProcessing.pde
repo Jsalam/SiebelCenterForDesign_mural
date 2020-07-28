@@ -7,8 +7,8 @@ Blob [] shpC;
 Blob [] shpD;
 
 void setup() {  
- // size(1200, 300, PDF, "test.pdf");
-  size(1300, 300);
+ size(1200, 300, PDF, "test.pdf");
+ // size(1300, 600);
 
   int n = 30;
 
@@ -16,7 +16,7 @@ void setup() {
   shpB = new Blob[n]; 
   shpC = new Blob[n]; 
   shpD = new Blob[n]; 
-  int xStep = 170;
+  int xStep = 150;
 
 
   for (int i = 0; i < shpA.length; i++) {
@@ -59,24 +59,25 @@ void draw() {
 
   for (int i = 0; i < shpA.length; i++) {
     shpA[i].showCurveVertex();
-    shpA[i].showControls();
+    //shpA[i].showControls();
   }
 
   for (int i = 0; i < shpB.length; i++) {
     shpB[i].showCurveVertex();
-    shpB[i].showControls();
+    //shpB[i].showControls();
   }
 
   for (int i = 0; i < shpC.length; i++) {
     shpC[i].showCurveVertex();
-    shpC[i].showControls();
+   // shpC[i].showControls();
   }
 
   for (int i = 0; i < shpD.length; i++) {
     shpD[i].showCurveVertex();
-    shpD[i].showControls();
+    //shpD[i].showControls();
   }
 
-  //println("saved");
-  //exit();
+  println("saved");
+  exit();
+  //noLoop();
 }
