@@ -1,15 +1,5 @@
 let renderer, scene, camera, light, controls;
 
-let angle = 0;
-anime({
-    targets: angle,
-    angle: 3.1416,
-    easing: 'linear',
-    update: function() {
-        scene.children[6].rotateX(angle);
-    }
-})
-
 init();
 
 // ***** FUNCTIONS ******
@@ -66,7 +56,6 @@ function init() {
     // Edge AC
     let edgeAC = new Edge(nodeA, nodeC);
     edgeAC.addToScene(scene)
-
 
     animate();
 }

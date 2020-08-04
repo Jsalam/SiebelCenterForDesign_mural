@@ -16,7 +16,7 @@ void setup() {
   size(800, 800, P3D);
   colorMode(HSB, 255);
   // Load image from hard drive
-  sourceImage = loadImage(sketchPath() + "/img/arcs.jpg");
+  sourceImage = loadImage(sketchPath() + "/img/Layout.jpg");
 
   // Create a new image processor
   imageProcessor = new PalmPrint(sourceImage);
@@ -31,7 +31,7 @@ void setup() {
   cloudMaker.makeCloud(imageProcessor.getImgResult(), 0, 50);
 
   // retrieve a cloud with density and elevation-filter parameters
-  cloud = cloudMaker.getCloud(6, 0);
+  cloud = cloudMaker.getCloud(3, 1);
 
   // camera radius
   camRadius = 800;
@@ -57,8 +57,9 @@ void draw() {
   //  imageProcessor.show();
   //}
   // show point cloud
-  //cloudMaker.show(cloud, -width/2, -height/4);
-  cloudMaker.showMesh(cloud, -width/2, -height/4);
+  cloudMaker.show(cloud, -width/2, -height/4);
+  // *** This function works with cloud elevation-filter == 0 
+  // cloudMaker.showMesh(cloud, -width/2, -height/4);
   // Print legend on canvas
   //legend();
 }
