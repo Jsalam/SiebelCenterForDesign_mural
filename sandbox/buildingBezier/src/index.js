@@ -138,26 +138,26 @@ function init() {
 
     
     
-    //SITE
-    var loader = new THREE.GLTFLoader();
-    loader.load('models/site.glb', function (site) {
-        scene.add(site.scene);
-
-        //scaleModel(gltf, 12)
-        switchToGray(site);
-
-        site.scene.traverse(function (child) {
-
-//            if (child instanceof THREE.Group) {
-//            child.material = new THREE.MeshPhongMaterial();
-                child.castShadow = true;
-                child.receiveShadow = true;
-//            }
-        });
-
-    }, undefined, function (error) {
-        console.error(error);
-    });
+//    //SITE
+//    var loader = new THREE.GLTFLoader();
+//    loader.load('models/site.glb', function (site) {
+//        scene.add(site.scene);
+//
+//        //scaleModel(gltf, 12)
+//        switchToGray(site);
+//
+//        site.scene.traverse(function (child) {
+//
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+//
+//    }, undefined, function (error) {
+//        console.error(error);
+//    });
 
     
     
@@ -198,13 +198,13 @@ function init() {
     //PEBBLES
     var pebbles;
     var loader = new THREE.GLTFLoader();
-    loader.load('models/sinusoid1.glb', function (pebbles) {
+    loader.load('models/sigmond2.glb', function (pebbles) {
 
         // add model to scene
         scene.add(pebbles.scene);
 
         //scaleModel(gltf, 12)
-        switchToWhite(pebbles);
+//        switchToGris(pebbles);
 
         pebbles.scene.traverse(function (child) {
 
