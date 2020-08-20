@@ -198,7 +198,7 @@ function init() {
     //PEBBLES
     var pebbles;
     var loader = new THREE.GLTFLoader();
-    loader.load('models/sigmond2.glb', function (pebbles) {
+    loader.load('models/sinusoid2.glb', function (pebbles) {
 
         // add model to scene
         scene.add(pebbles.scene);
@@ -221,48 +221,74 @@ function init() {
         console.error(error);
     });
 
+    
+        //BORDERS
+    var borders;
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/borders.glb', function (borders) {
+
+        // add model to scene
+        scene.add(borders.scene);
+
+        //scaleModel(gltf, 12)
+//        switchToGris(pebbles);
+
+        borders.scene.traverse(function (child) {
+
+//            if (child instanceof THREE.Group) {
+            
+                child.castShadow = true;
+                child.receiveShadow = true;
+//            }
+        });
+        
+        
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
 
 
     //  **** NETWORK *****
 
-    // Axes
-    var axesHelper = new THREE.AxesHelper(50);
-    scene.add(axesHelper)
-
-    let nodes = [];
-    for (let i = 0; i < 30; i++) {
-        let tmp = new Node();
-        let posX = (Math.random() * 720);
-        let posY = (Math.random() * 24);
-        tmp.obj.position.set(posX, posY, -144)
-        translateNode(tmp, new THREE.Vector3(-1195, 24, -80))
-        nodes.push(tmp);
-        tmp.addToScene(scene);
-    }
-
-    // let nodeA = new Node();
-    // let nodeB = new Node();
-    // nodeA.obj.position.set(0, 0, -144);
-    // nodeB.obj.position.set(720, 0, -144);
-    // translateNode(nodeA, new THREE.Vector3(-1195, 24, -80))
-    // translateNode(nodeB, new THREE.Vector3(-1195, 24, -80))
-    // nodes.push(nodeA)
-    // nodes.push(nodeB)
-    // nodeA.addToScene(scene);
-    // nodeB.addToScene(scene);
-
-    let edges = [];
-
-    for (let i = 0; i < 100; i++) {
-        let sourceIndex = Math.floor(Math.random() * nodes.length);
-        let targetIndex = Math.floor(Math.random() * nodes.length);
-        if (sourceIndex == targetIndex) {
-            targetIndex = Math.floor(Math.random() * nodes.length);
-        }
-        let edgeST = new Edge(nodes[sourceIndex], nodes[targetIndex], Math.floor(Math.random() * 4));
-        edges.push(edgeST);
-        edgeST.addToScene(scene);
-    }
+//    // Axes
+//    var axesHelper = new THREE.AxesHelper(50);
+//    scene.add(axesHelper)
+//
+//    let nodes = [];
+//    for (let i = 0; i < 30; i++) {
+//        let tmp = new Node();
+//        let posX = (Math.random() * 720);
+//        let posY = (Math.random() * 24);
+//        tmp.obj.position.set(posX, posY, -144)
+//        translateNode(tmp, new THREE.Vector3(-1195, 24, -80))
+//        nodes.push(tmp);
+//        tmp.addToScene(scene);
+//    }
+//
+//    // let nodeA = new Node();
+//    // let nodeB = new Node();
+//    // nodeA.obj.position.set(0, 0, -144);
+//    // nodeB.obj.position.set(720, 0, -144);
+//    // translateNode(nodeA, new THREE.Vector3(-1195, 24, -80))
+//    // translateNode(nodeB, new THREE.Vector3(-1195, 24, -80))
+//    // nodes.push(nodeA)
+//    // nodes.push(nodeB)
+//    // nodeA.addToScene(scene);
+//    // nodeB.addToScene(scene);
+//
+//    let edges = [];
+//
+//    for (let i = 0; i < 100; i++) {
+//        let sourceIndex = Math.floor(Math.random() * nodes.length);
+//        let targetIndex = Math.floor(Math.random() * nodes.length);
+//        if (sourceIndex == targetIndex) {
+//            targetIndex = Math.floor(Math.random() * nodes.length);
+//        }
+//        let edgeST = new Edge(nodes[sourceIndex], nodes[targetIndex], Math.floor(Math.random() * 4));
+//        edges.push(edgeST);
+//        edgeST.addToScene(scene);
+//    }
 
 
     animate();
