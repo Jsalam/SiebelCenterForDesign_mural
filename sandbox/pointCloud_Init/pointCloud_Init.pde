@@ -11,9 +11,10 @@ int thresholdPercentage = 0;
 boolean showOriginal = false;
 String filter = "sin";
 float camRadius;
+float rotation =0;
 
 void setup() {
-  size(800, 800, P3D);
+  size(1200, 800, P3D);
   colorMode(HSB, 255);
   // Load image from hard drive
   sourceImage = loadImage(sketchPath() + "/img/Layout.jpg");
@@ -28,38 +29,36 @@ void setup() {
   cloudMaker = new PointCloudMaker();
 
   // Create a point cloud with min and max point height
-  cloudMaker.makeCloud(imageProcessor.getImgResult(), 0, 50);
+  cloudMaker.makeCloud(imageProcessor.getImgResult(), 0, 20);
 
   // retrieve a cloud with density and elevation-filter parameters
-  cloud = cloudMaker.getCloud(3, 1);
+  cloud = cloudMaker.getCloud(10, 0);
 
   // camera radius
   camRadius = 800;
 }
 
-float rotation =0;
-
 void draw() {
   background(255);
-  orbitControls();
 
-
-  stroke(127, 255, 255);
-  line(0, 0, 0, 100, 0, 0);
-  stroke(0, 255, 255);
-  line(0, 0, 0, 0, 100, 0);
-  stroke(0);
+  //stroke(127, 255, 255);
+  //line(0, 0, 0, 100, 0, 0);
+  //stroke(0, 255, 255);
+  //line(0, 0, 0, 0, 100, 0);
+  //stroke(0);
 
   //// Show soruce and filtered image
-  //if (showOriginal) {
-  //  imageProcessor.showOriginal();
-  //} else {
-  //  imageProcessor.show();
-  //}
+  if (showOriginal) {
+    imageProcessor.showOriginal();
+  } else {
+    imageProcessor.show();
+     cloudMaker.showMesh(cloud, -width/2, -height/4);
+  }
+  noFill();
   // show point cloud
-  cloudMaker.show(cloud, -width/2, -height/4);
+  //cloudMaker.show(cloud, -width/2, -height/4);
   // *** This function works with cloud elevation-filter == 0 
-  // cloudMaker.showMesh(cloud, -width/2, -height/4);
+  
   // Print legend on canvas
   //legend();
 }
@@ -85,11 +84,21 @@ void keyPressed() {
     filter = "sigmoid";
     imageProcessor.getContrastImage(filter);
   }
+  
+    // Create a point cloud with min and max point height
+  cloudMaker.makeCloud(imageProcessor.getImgResult(), 0, 20);
+
+  // retrieve a cloud with density and elevation-filter parameters
+  cloud = cloudMaker.getCloud(5, 0);
 
   // SaveFile
   if (key == 'r' || key == 'R') {
     cloudMaker.saveToFile(cloud);
   }
+}
+
+void mouseDragged(){
+    orbitControls();
 }
 
 
@@ -110,6 +119,7 @@ void orbitControls() {
 void mouseWheel(MouseEvent event) {
   // println(event.getCount());
   camRadius += event.getCount();
+  orbitControls();
 }
 
 

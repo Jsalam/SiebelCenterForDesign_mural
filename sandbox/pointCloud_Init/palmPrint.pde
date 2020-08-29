@@ -66,11 +66,11 @@ class PalmPrint {
   }
 
   void show() {  // print the image in the canvas.
-    image(rImage, 0, 0);
+    image(rImage, -width/2, -height/4);
   }
 
   void showOriginal() {  // print the image in the canvas.
-    image(myPrint, 0, 0);
+    image(myPrint, -width/2, -height/4);
   }
 
 
@@ -92,6 +92,7 @@ class PalmPrint {
     return yp;
   }
 
+// Filtro sigmoideo
   float filterSigmoid(float val, float minE, float maxE, float minS, float maxS) {
     float alpha= 2550;
     float beta= 1220;

@@ -7,7 +7,7 @@ let hairs, monochromatic;
 let randoms = [];
 
 function preload() {
-    img = loadImage("images/gravitationalNCSA.jpg");
+    img = loadImage("images/sky.png");
 }
 
 function setup() {
