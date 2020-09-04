@@ -9,15 +9,20 @@ ArrayList <ArrayList<PVector>> cloud;
 
 int thresholdPercentage = 0;
 boolean showOriginal = false;
+boolean viewMesh = false;
 String filter = "sin";
 float camRadius;
 float rotation =0;
+float minZ = 0;
+float maxZ = 20;
+int density = 10;
+
 
 void setup() {
   size(1200, 800, P3D);
   colorMode(HSB, 255);
   // Load image from hard drive
-  sourceImage = loadImage(sketchPath() + "/img/Layout.jpg");
+  sourceImage = loadImage(sketchPath() + "/img/gradient.jpg");
 
   // Create a new image processor
   imageProcessor = new PalmPrint(sourceImage);
@@ -29,36 +34,40 @@ void setup() {
   cloudMaker = new PointCloudMaker();
 
   // Create a point cloud with min and max point height
-  cloudMaker.makeCloud(imageProcessor.getImgResult(), 0, 20);
+  cloudMaker.makeCloud(imageProcessor.getImgResult(), minZ, maxZ);
 
   // retrieve a cloud with density and elevation-filter parameters
-  cloud = cloudMaker.getCloud(10, 0);
+  cloud = cloudMaker.getCloud(density, 0);
 
   // camera radius
-  camRadius = 800;
+  camRadius = 80;
 }
 
 void draw() {
   background(255);
 
-  //stroke(127, 255, 255);
-  //line(0, 0, 0, 100, 0, 0);
-  //stroke(0, 255, 255);
-  //line(0, 0, 0, 0, 100, 0);
-  //stroke(0);
+  stroke(127, 255, 255);
+  line(0, 0, 0, 100, 0, 0);
+  stroke(0, 255, 255);
+  line(0, 0, 0, 0, 100, 0);
+  stroke(0);
 
   //// Show soruce and filtered image
   if (showOriginal) {
     imageProcessor.showOriginal();
   } else {
-    imageProcessor.show();
-     cloudMaker.showMesh(cloud, -width/2, -height/4);
+    //imageProcessor.show();
+    if (viewMesh) {
+      cloudMaker.showMesh(cloud, -sourceImage.width/2, -sourceImage.height/2);
+    } else {
+      cloudMaker.show(cloud, -sourceImage.width/2, -sourceImage.height/2);
+    }
   }
   noFill();
   // show point cloud
   //cloudMaker.show(cloud, -width/2, -height/4);
   // *** This function works with cloud elevation-filter == 0 
-  
+
   // Print legend on canvas
   //legend();
 }
@@ -84,12 +93,18 @@ void keyPressed() {
     filter = "sigmoid";
     imageProcessor.getContrastImage(filter);
   }
-  
-    // Create a point cloud with min and max point height
-  cloudMaker.makeCloud(imageProcessor.getImgResult(), 0, 20);
+
+  // Mesh or cloud
+  if (key == 'm' || key == 'M') {
+    viewMesh = !viewMesh;
+    imageProcessor.getContrastImage(filter);
+  }
+
+  // Create a point cloud with min and max point height
+  cloudMaker.makeCloud(imageProcessor.getImgResult(), minZ, maxZ);
 
   // retrieve a cloud with density and elevation-filter parameters
-  cloud = cloudMaker.getCloud(5, 0);
+  cloud = cloudMaker.getCloud(density, 0);
 
   // SaveFile
   if (key == 'r' || key == 'R') {
@@ -97,8 +112,8 @@ void keyPressed() {
   }
 }
 
-void mouseDragged(){
-    orbitControls();
+void mouseDragged() {
+  orbitControls();
 }
 
 
