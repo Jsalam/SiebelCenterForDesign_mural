@@ -1,5 +1,5 @@
 
-import geomerative.*;
+//import geomerative.*;
 
 
 PImage sourceImage;
@@ -40,7 +40,7 @@ void setup() {
   cloud = cloudMaker.getCloud(density, 0);
 
   // camera radius
-  camRadius = 80;
+  camRadius = 200;
 }
 
 void draw() {
