@@ -109,144 +109,340 @@ function init() {
 
     
     //MATERIAL 
+
     
-    
-    //MODEL
-    var scd;
+
+    //ART AND DESIGN BUILDING
     var loader = new THREE.GLTFLoader();
-    loader.load('models/scd.glb', function (scd) {
-        // add model to scene
-        scene.add(scd.scene);
-        
-   
+    loader.load('models/individualModels/ad.glb', function (ad) {
+        scene.add(ad.scene);
 
         //scaleModel(gltf, 12)
-        switchToWhite(scd);
+        switchToGray(ad);
 
-        scd.scene.traverse(function (child) {
-//            if (child instanceof THREE.Group) {
-//                child.material = new THREE.MeshPhysicalMaterial();
-                child.castShadow = true;
-                child.receiveShadow = true;
-            
-//            }
-        });
-
-    }, undefined, function (error) {
-        console.error(error);
-    });
-
-    
-    
-//    //SITE
-//    var loader = new THREE.GLTFLoader();
-//    loader.load('models/site.glb', function (site) {
-//        scene.add(site.scene);
-//
-//        //scaleModel(gltf, 12)
-//        switchToGray(site);
-//
-//        site.scene.traverse(function (child) {
-//
+//        ad.scene.traverse(function (child) {
 ////            if (child instanceof THREE.Group) {
 ////            child.material = new THREE.MeshPhongMaterial();
 //                child.castShadow = true;
 //                child.receiveShadow = true;
 ////            }
 //        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+    
+    //BARTON
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/barton.glb', function (barton) {
+        scene.add(barton.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(barton);
+
+//        barton.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+
+    //BIF
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/bif.glb', function (bif) {
+        scene.add(bif.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(bif);
+
+//        bif.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+    
+    //CLARK
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/clark.glb', function (clark) {
+        scene.add(clark.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(clark);
+
+//        clark.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+    
+    //FLAGG
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/flagg.glb', function (flagg) {
+        scene.add(flagg.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(flagg);
+
+//        clark.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //HUFF
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/huff.glb', function (huff) {
+        scene.add(huff.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(huff);
+
+//        huff.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //IKENBERRY
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/ikenberry.glb', function (ikenberry) {
+        scene.add(ikenberry.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(ikenberry);
+
+//        ikenberry.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //LUNDGREN
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/lundgren.glb', function (lundgren) {
+        scene.add(lundgren.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(lundgren);
+
+//        lundgren.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //MAINGALLERYWALL
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/mainGalleryWall.glb', function (mainGalleryWall) {
+        scene.add(mainGalleryWall.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGris(mainGalleryWall);
+
+//        mainGalleryWall.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //MINORGALLERYWALL
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/minorGalleryWall.glb', function (minorGalleryWall) {
+        scene.add(minorGalleryWall.scene);
+
+        //scaleModel(gltf, 12)
+//        switchToGray(minorGalleryWall);
+
+//        minorGalleryWall.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //NOBLE
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/noble.glb', function (noble) {
+        scene.add(noble.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(noble);
+
+//        noble.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //SCD2
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/scd2.glb', function (scd2) {
+        scene.add(scd2.scene);
+
+        //scaleModel(gltf, 12)
+        switchToWhite(scd2);
+
+//        scd2.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //SITE
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/site.glb', function (site) {
+        scene.add(site.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(site);
+
+//        site.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+        
+    //TAFT
+    var loader = new THREE.GLTFLoader();
+    loader.load('models/individualModels/taft.glb', function (taft) {
+        scene.add(taft.scene);
+
+        //scaleModel(gltf, 12)
+        switchToGray(taft);
+
+//        taft.scene.traverse(function (child) {
+////            if (child instanceof THREE.Group) {
+////            child.material = new THREE.MeshPhongMaterial();
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+
+    }, undefined, function (error) {
+        console.error(error);
+    });
+    
+//    //PEBBLES
+//    var pebbles;
+//    var loader = new THREE.GLTFLoader();
+//    loader.load('models/sinusoid2.glb', function (pebbles) {
+//
+//        // add model to scene
+//        scene.add(pebbles.scene);
+//
+//        //scaleModel(gltf, 12)
+////        switchToGris(pebbles);
+//
+//        pebbles.scene.traverse(function (child) {
+//
+////            if (child instanceof THREE.Group) {
+//            
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+//        
+//        
 //
 //    }, undefined, function (error) {
 //        console.error(error);
 //    });
-
-    
-    
-    //WALL
-    var loader = new THREE.GLTFLoader();
-    loader.load('models/wall.glb', function (wall) {
-
-        // add model to scene
-        scene.add(wall.scene);
-
-        //scaleModel(gltf, 12)
-        switchToGris(wall);
-
-        wall.scene.traverse(function (child) {
-
-//            if (child instanceof THREE.Group) {
-//            child.material = new THREE.MeshPhongMaterial();
-                child.castShadow = true;
-                child.receiveShadow = true;
-//            }
-        });
-
-        
-        function switchToGris(model) {
-    let objects = model.scene.children[0].children
-    for (const object of objects) {
-        object.material.color = new THREE.Color(0x400404);
-
-    }
-}
-        
-    }, undefined, function (error) {
-        console.error(error);
-    });
-
-
-   
-    //PEBBLES
-    var pebbles;
-    var loader = new THREE.GLTFLoader();
-    loader.load('models/sinusoid2.glb', function (pebbles) {
-
-        // add model to scene
-        scene.add(pebbles.scene);
-
-        //scaleModel(gltf, 12)
-//        switchToGris(pebbles);
-
-        pebbles.scene.traverse(function (child) {
-
-//            if (child instanceof THREE.Group) {
-            
-                child.castShadow = true;
-                child.receiveShadow = true;
-//            }
-        });
-        
-        
-
-    }, undefined, function (error) {
-        console.error(error);
-    });
-
-    
-        //BORDERS
-    var borders;
-    var loader = new THREE.GLTFLoader();
-    loader.load('models/borders.glb', function (borders) {
-
-        // add model to scene
-        scene.add(borders.scene);
-
-        //scaleModel(gltf, 12)
-//        switchToGris(pebbles);
-
-        borders.scene.traverse(function (child) {
-
-//            if (child instanceof THREE.Group) {
-            
-                child.castShadow = true;
-                child.receiveShadow = true;
-//            }
-        });
-        
-        
-
-    }, undefined, function (error) {
-        console.error(error);
-    });
+//    
+//        //BORDERS
+//    var borders;
+//    var loader = new THREE.GLTFLoader();
+//    loader.load('models/borders.glb', function (borders) {
+//
+//        // add model to scene
+//        scene.add(borders.scene);
+//
+//        //scaleModel(gltf, 12)
+////        switchToGris(pebbles);
+//
+//        borders.scene.traverse(function (child) {
+//
+////            if (child instanceof THREE.Group) {
+//            
+//                child.castShadow = true;
+//                child.receiveShadow = true;
+////            }
+//        });
+//        
+//        
+//
+//    }, undefined, function (error) {
+//        console.error(error);
+//    });
 
 
     //  **** NETWORK *****
