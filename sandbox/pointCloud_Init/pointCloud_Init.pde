@@ -65,7 +65,7 @@ void draw() {
   }
   noFill();
   // show point cloud
-  //cloudMaker.show(cloud, -width/2, -height/4);
+  // cloudMaker.show(cloud, -width/2, -height/4);
   // *** This function works with cloud elevation-filter == 0 
 
   // Print legend on canvas
