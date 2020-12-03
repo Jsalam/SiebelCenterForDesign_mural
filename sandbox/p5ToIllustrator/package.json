@@ -1,0 +1,16 @@
+{
+    "name": "test-project",
+    "author": "Juan Salamanca",
+    "description": "Testing scripting for Adobe Illustrator",
+    "main": "src/main.js",
+    "private": "true",
+    "scripts": {},
+    "engines": {
+        "node": ">= 6.0.0"
+    },
+    "dependencies": {
+        "extendscript-json": "^0.1.1",
+        "fs": "0.0.1-security",
+        "types-for-adobe": "github:pravdomil/types-for-adobe"
+    }
+}

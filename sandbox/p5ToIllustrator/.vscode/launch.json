@@ -7,8 +7,8 @@
         {
             "type": "extendscript-debug",
             "request": "launch",
-            "name": "Mural Script",
-            "program": "${workspaceFolder}/script.jsx",
+            "name": "Migration Netint - Illustrator",
+            "program": "${workspaceFolder}/src/script.jsx",
             "stopOnEntry": false
         }
     ]
