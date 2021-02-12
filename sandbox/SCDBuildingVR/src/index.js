@@ -35,8 +35,8 @@ function initCamera() {
     camera.position.set(-720, 60, 0);
 
     // helper
-    var helper = new THREE.CameraHelper(camera);
-    scene.add(helper);
+    // var helper = new THREE.CameraHelper(camera);
+    // scene.add(helper);
 }
 
 /** Renderer */
@@ -67,7 +67,7 @@ function loadModels() {
     //MODEL
     let loader = new GLTFLoader();
 
-    //loadBuilding();
+    loadBuilding();
     loadMainGalleryWall();
     loadSecondaryGalleryWall();
 
@@ -97,7 +97,7 @@ function loadModels() {
     function loadMainGalleryWall() {
 
         // load texture
-        let texture = loadTexture("./textures/Helvetica_URWForm.png");
+        let texture = loadTexture("./textures/layoutDec2020.png");
 
         // load the model
         let id;
