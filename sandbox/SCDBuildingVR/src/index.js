@@ -58,7 +58,7 @@ function initControls() {
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 1;
     //controls.minDistance = 10;
-    controls.maxDistance = 400;
+    controls.maxDistance = 720;
     controls.target = new THREE.Vector3(-720, 60, -100);
 }
 
@@ -97,7 +97,7 @@ function loadModels() {
     function loadMainGalleryWall() {
 
         // load texture
-        let texture = loadTexture("./textures/layoutDec2020.png");
+        let texture = loadTexture("./textures/layoutDec2020sm.png");
 
         // load the model
         let id;
