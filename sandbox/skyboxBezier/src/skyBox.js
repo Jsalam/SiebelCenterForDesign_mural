@@ -2,12 +2,13 @@ class SkyBox {
 
     constructor(_width, _height, _depth) {
         // Textures
-        let texture_north = new THREE.TextureLoader().load('../testSkybox/textures/north.png');
-        let texture_sky = new THREE.TextureLoader().load('../testSkybox/textures/top.png');
-        let texture_west = new THREE.TextureLoader().load('../testSkybox/textures/west.png');
-        let texture_south = new THREE.TextureLoader().load('../testSkybox/textures/south.png');
-        let texture_ground = new THREE.TextureLoader().load('../testSkybox/textures/ground.png');
-        let texture_east = new THREE.TextureLoader().load('../testSkybox/textures/east.png');
+        let prefix = './textures/finishedBuilding/layers/'
+        let texture_north = new THREE.TextureLoader().load(prefix + '_north@0.75x.png');
+        let texture_sky = new THREE.TextureLoader().load(prefix + '_ceiling@0.75x.png');
+        let texture_west = new THREE.TextureLoader().load(prefix + '_west@0.75x.png');
+        let texture_south = new THREE.TextureLoader().load(prefix + '_south@0.75x.png');
+        let texture_ground = new THREE.TextureLoader().load(prefix + '_ceiling@0.75x.png');
+        let texture_east = new THREE.TextureLoader().load(prefix + '_east@0.75x.png');
 
         let materials = [];
         // X+ EAST
@@ -24,11 +25,11 @@ class SkyBox {
         }));
         // Y- GROUND
         materials.push(new THREE.MeshBasicMaterial({
-            map: texture_ground
+            color: "#000000"
         }));
         // Z- SOUTH
         materials.push(new THREE.MeshBasicMaterial({
-            color: "#000000"
+            map: texture_south
         }));
         // Z+ NORTH
         materials.push(new THREE.MeshBasicMaterial({

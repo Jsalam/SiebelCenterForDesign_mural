@@ -21,7 +21,7 @@ function init() {
     // Controls
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    camera.position.set(0, -200, 1000);
+    camera.position.set(0, -200, 300);
 
     controls.autorotate = true;
     controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
