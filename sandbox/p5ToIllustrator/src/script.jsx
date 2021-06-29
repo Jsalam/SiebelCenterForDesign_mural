@@ -57,20 +57,27 @@ $.evalFile(
 var doc = app.activeDocument;
 
 /********************************************* IMPORT DATA *********************** */
-// Use absolute path for the JSON file.
-var root =
-  "~/Documents/GitHub/Siebel%20Center%20for%20Design/mural_SCD/sandbox/p5ToIllustrator/";
+//Use absolute path for the JSON file.
+var root = "~/Documents/GitHub/Siebel%20Center%20for%20Design/mural_SCD/sandbox/p5ToIllustrator/";
 
-var pathEdges = root + "files/vEdges.json";
+//var pathEdges = root + "files/vEdges.json";
 
 var pathThemeF = root + "files/ThemeFlow_June_28.json";
 
-var pathNodes = root + "files/Network_June_28R.json";
+/**** IMPORTANT: verify the JSON file starts with " nodes": [{ */
+var pathNodes = root + "files/NetworkWithNodePositions_network.json";
 
 // read JSON FILE
-var edgesData = readJSON(pathEdges);
-var themeFlowData = readJSON(pathThemeF);
-var nodesData = readJSON(pathNodes);
+// var edgesData = readJSON(pathEdges);
+
+ var themeFlowData = readJSON(pathThemeF);
+
+
+ var nodesData = readJSON(pathNodes);
+
+ alert("hello");
+
+
 
 /********************************************* ADD LAYERS *********************** */
 
@@ -158,11 +165,11 @@ for (var i = 0; i < nodesData.nodes.length; i++) {
   }
 }
 
-//draw arcs
-for (var i = 0; i < edgesData.length; i++) {
-  var layer = doc.layers.getByName(edgesData[i].edge.kind);
-  addEdge(layer, edgesData[i]);
-}
+// //draw arcs
+// for (var i = 0; i < edgesData.length; i++) {
+//   var layer = doc.layers.getByName(edgesData[i].edge.kind);
+//   addEdge(layer, edgesData[i]);
+// }
 
 //draw chords
 for (var i = 0; i < themeFlowData.chords.length; i++) {

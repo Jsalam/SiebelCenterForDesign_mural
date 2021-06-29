@@ -145,11 +145,11 @@ class Pebble {
             axis.show(renderer);
         }
 
-        renderer.stroke(0);
+        renderer.stroke(this._dominantColor);
 
         this.bezierPoints = this.drawBezier(renderer, this.axes[0].valPosition, this.axes[1].valPosition,
             this.axes[2].valPosition, this.axes[3].valPosition,
-            this.axes[4].valPosition, 45, renderer.color(this._dominantColor), 250);
+            this.axes[4].valPosition, 45, renderer.color(this._dominantColor), 10);
     }
 
     setPositionAxes(posX, posY) {

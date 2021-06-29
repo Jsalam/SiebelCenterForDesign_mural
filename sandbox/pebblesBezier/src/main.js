@@ -16,8 +16,10 @@ let xPos = 0;
 let yPos = 0;
 let count = 3;
 let nodeIndex // the node index to be rendered
+let frameSize = 512;
 
-let grassHopperOrPNG = true // true means it is enabled for  grasshopper
+//********  IMPORTANT  *******
+let grassHopperOrPNG = false //     true means it is enabled for  grasshopper else for PNG
 
 let main = function(p5) {
 
@@ -31,14 +33,9 @@ let main = function(p5) {
 
     p5.setup = function() {
         p5.createCanvas(p5.displayWidth, 1200);
-
         main.pGinit();
-
         p5.textAlign(p5.CENTER);
-
         DOM.init();
-
-        //  DOM.onLoadNetwork(data);
     }
 
     /**
@@ -46,9 +43,7 @@ let main = function(p5) {
      */
     main.init = function() {
 
-
         data = DataWrangler.table;
-
 
         // Instantiation
         const count = 0
@@ -82,6 +77,8 @@ let main = function(p5) {
             for (let i = 0; i < pebbles.length; i++) {
                 pebbles[i].setPositionAxes(257.5, 257.5)
             }
+
+            console.log("setup for PNG");
         }
     }
 
@@ -92,11 +89,13 @@ let main = function(p5) {
     }
 
     p5.draw = function() {
+
         if (grassHopperOrPNG) {
             allSilhouttes();
         } else {
             PNGSequence();
         }
+
     }
 
     function allSilhouttes() {
@@ -105,13 +104,11 @@ let main = function(p5) {
         if (!DataWrangler.table) {
             p5.text("No data loaded yet", 100, 100)
         } else {
-            p5.text(pebbles.length, 100, 100)
 
             for (let i = 0; i < pebbles.length; i++) {
                 pebbles[i].displayRow2(p5, data.rows[i].obj);
             }
         }
-
     }
 
 
@@ -128,6 +125,7 @@ let main = function(p5) {
             p5.text("No data loaded yet", 100, 100)
         } else if (nodeIndex) {
 
+            p5.text("Data loaded", 100, 100)
             pebbles[nodeIndex].displayRow(pG, data.rows[nodeIndex].obj);
 
             // render image

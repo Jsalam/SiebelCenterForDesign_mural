@@ -16,11 +16,15 @@ class DOM {
         DOM.buttons.saveFile = document.getElementById("savePebblesForGH");
         DOM.buttons.saveFile.onclick = DOM.saveFile;
 
+        DOM.buttons.tooggleGH = document.getElementById("option1");
+        DOM.buttons.tooggleGH.onclick = DOM.switchToggleGH;
+
+        DOM.buttons.toogglePNG = document.getElementById("option2");
+        DOM.buttons.toogglePNG.onclick = DOM.switchTogglePNG;
+
         // Fields 
-        if (grassHopperOrPNG) {
-            DOM.fields.nodeIndex = document.getElementById("nodeIndex");
-            DOM.fields.nodeIndex.onchange = DOM.generatePNG;
-        }
+        DOM.fields.nodeIndex = document.getElementById("nodeIndex");
+        DOM.fields.nodeIndex.onchange = DOM.generatePNG;
     }
 
     /**
@@ -62,7 +66,14 @@ class DOM {
         yPos = 0;
         main.pGinit();
         gp5.loop();
+    }
 
+    static switchToggleGH(evt) {
+        grassHopperOrPNG = true;
+    }
+
+    static switchTogglePNG(evt) {
+        grassHopperOrPNG = false;
     }
 }
 DOM.buttons = {};

@@ -26,33 +26,48 @@
 
 <body>
 
-    <div class="container-fluid" style="padding-top: 20px; margin: 10px;">
+    <div class="container" style="padding-top: 20px; margin: 10px;">
 
         <H3>This script draws and exports pebbles for SCD wall </H3>
 
         <div class="row">
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+
                 <div style="padding-top: 10px;">
                     <button class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.8em;" id="myBtn" data-toggle="modal" data-target="#importNetworkModal">Load
             file</button>
-                    <p style="font-size: small;">1. Select a json file with the network of nodes and edges exported from <a href="http://muralaugmented.web.illinois.edu/sandbox/innovationNetwork/" target="_blank">Simple NetInt</a>
+                    <p style="font-size: small; padding-top: 10px;">1. Select a json file with the network of nodes and edges exported from <a href="http://muralaugmented.web.illinois.edu/sandbox/innovationNetwork/" target="_blank">Simple NetInt</a>
                     </p>
                 </div>
 
             </div>
-            <div class="col-sm-4">
+
+            <div class="col-sm-3">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="padding-top: 10px;">
+                    <label class="btn btn-secondary btn-sm active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Grasshopper
+                    </label>
+                    <label class="btn btn-secondary btn-sm">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> PNG animation
+                    </label>
+                </div>
+                <p style="font-size: small; padding-top: 10px;">2. Select whether you want the pebble files for grasshopper or PNG animation
+                </p>
+            </div>
+
+            <div class="col-sm-3">
                 <div style="padding-top: 10px;">
                     <button class="btn btn-outline-secondary btn-sm py-0" style="font-size: 0.8em;" id="savePebblesForGH">Save
             data for Grasshopper</button>
-                    <p style="font-size: small;">2. File saved in the downloads folder</p>
+                    <p style="font-size: small; padding-top: 10px;">3. File saved in the downloads folder</p>
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div style="padding-top: 10px;">
                     <input type="number" id="nodeIndex" name="nodeIndex" min="0" max="49">
-                    <label for="nodeIndex" style="font-size: small;">Index of node for PNG animation file. Between 0 and 49</label>
+                    <p style="font-size: small; padding-top: 10px;">Enter the index of node for PNG animation file. Between 0 and 49</p>
                 </div>
             </div>
         </div>
