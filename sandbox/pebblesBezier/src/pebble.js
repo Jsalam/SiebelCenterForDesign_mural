@@ -54,7 +54,8 @@ class Pebble {
         this.innovationTitle = data.obj.InnovationTitle;
         this.theme = data.obj.Theme;
         this._dominantColor = colorDictionary[this.theme.toString()];
-        this._color = chroma(this._dominantColor).brighten(3).saturate(3);
+        // this._color = chroma(this._dominantColor).brighten(3).saturate(3); // #fade79
+        this._color = chroma("#fade79"); // #fade79
         this._colorSteps = chroma.scale([this._color, this._dominantColor]).colors(this.nColors);
 
     }
@@ -107,7 +108,7 @@ class Pebble {
         renderer.blendMode(renderer.REMOVE);
         //renderer.blendMode(renderer.LIGHTEN);
         let myFill = renderer.color(0);
-        let alfa = 10;
+        let alfa = 60;
 
         this.drawBezier(renderer, this.axes[0].valPosition, this.axes[1].start,
             this.axes[2].start, this.axes[3].start,

@@ -49,12 +49,13 @@ let main = function(p5) {
         const count = 0
         for (let i = count; i < count + DataWrangler.table.getRowCount(); i++) {
             let temp = new Pebble(5);
+
             temp.axesSetup(
-                200 + (360 * i),
-                360,
-                257.5,
-                data.columns,
-                130);
+                200 + (360 * i), //  x position
+                360, // y position
+                frameSize / 2, //  length in pixels
+                data.columns, // table headers
+                100); // offset from the xy center
             temp.idSetup(data.rows[i]);
             pebbles.push(temp);
         }
@@ -67,15 +68,15 @@ let main = function(p5) {
                     // From 2D array to 1D array
                     let index = nCol * i + j
                     pebbles[index].setPositionAxes(
-                        257.5 + (515 * i),
-                        257.5 + (515 * j));
+                        (frameSize / 2) + (frameSize * i),
+                        (frameSize / 2) + (frameSize * j));
                 }
             }
         } else {
 
             // Placement for PNG
             for (let i = 0; i < pebbles.length; i++) {
-                pebbles[i].setPositionAxes(257.5, 257.5)
+                pebbles[i].setPositionAxes((frameSize / 2), (frameSize / 2))
             }
 
             console.log("setup for PNG");
@@ -83,8 +84,8 @@ let main = function(p5) {
     }
 
     main.pGinit = function() {
-        let pgWidth = 515 * cols
-        let pgHeight = 515 * 3
+        let pgWidth = frameSize * cols
+        let pgHeight = frameSize * 3
         pG = p5.createGraphics(pgWidth, pgHeight);
     }
 
@@ -117,7 +118,6 @@ let main = function(p5) {
      * of the pebbel to be rendered
      */
     function PNGSequence() {
-        // p5.rect(0, 0, 515, 515);
 
         p5.clear(255);
 
@@ -125,23 +125,22 @@ let main = function(p5) {
             p5.text("No data loaded yet", 100, 100)
         } else if (nodeIndex) {
 
-            p5.text("Data loaded", 100, 100)
             pebbles[nodeIndex].displayRow(pG, data.rows[nodeIndex].obj);
 
             // render image
             let fctr = pG.width / pG.height;
             p5.image(pG, 0, 0, pG.width / fctr, pG.height / fctr);
 
-            xPos += 515;
+            xPos += frameSize;
 
             // translate canvas
-            pG.translate(515, 0);
+            pG.translate(frameSize, 0);
 
-            if (xPos % (515 * cols) == 0) {
+            if (xPos % (frameSize * cols) == 0) {
 
-                yPos += 515;
+                yPos += frameSize;
 
-                pG.translate(-515 * cols, 515)
+                pG.translate(-frameSize * cols, frameSize)
 
                 count--;
             }
@@ -150,12 +149,16 @@ let main = function(p5) {
                 p5.noLoop();
 
                 if (window.confirm("PNG for pebble '" + pebbles[nodeIndex].innovationTitle + "' was rendered. Would you like to save the file?")) {
+
                     pG.save(pebbles[nodeIndex].innovationTitle + '.png');
                     console.log(pebbles[nodeIndex].innovationTitle + ".png file saved");
                 }
 
-
             }
+
+            pG.noFill();
+            pG.stroke(0);
+            pG.rect(xPos, yPos, frameSize, frameSize);
         }
     }
 }

@@ -18,7 +18,7 @@ class Axis {
         this.start.add(this.offsetVector);
 
         // for animation
-        this.animVal = -50;
+        this.animVal = 20; //-frameSize / 20;
     }
 
     setPosition(posX, posY) {
