@@ -7,7 +7,7 @@ let hairs, monochromatic;
 let randoms = [];
 
 function preload() {
-    img = loadImage("images/sky.png");
+    img = loadImage("images/markerA.jpg");
 }
 
 function setup() {
@@ -109,7 +109,7 @@ function drawStroke(_color, x, y, randomVal) {
     // Thickness
     let t = map(_color._getHue(), 0, 360, 30, inputHue.value())
     strokeWeight(t * randomVal);
-    strokeCap(ROUND);
+    strokeCap(SQUARE);
 
     // Color
     let theFill = _color;
